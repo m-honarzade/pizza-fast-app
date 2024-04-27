@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-const Button = ({ children, disabled, to, type = 'primary' }) => {
+const Button = ({ children, disabled, to, type = 'primary', onClick }) => {
   const base =
     'bg-yellow-400 hover:bg-yellow-300 focus:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 transition-colors duration-300 text-sm font-semibold disabled:cursor-not-allowed uppercase rounded-full text-stone-800 tracking-wide ';
   const style = {
@@ -14,6 +14,12 @@ const Button = ({ children, disabled, to, type = 'primary' }) => {
       <Link to={to} className={style[type]}>
         {children}
       </Link>
+    );
+  if (onClick)
+    return (
+      <button disabled={disabled} className={style[type]} onClick={onClick}>
+        {children}
+      </button>
     );
   return (
     <button disabled={disabled} className={style[type]}>
