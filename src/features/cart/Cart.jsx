@@ -32,6 +32,7 @@ import EmptyCart from './EmptyCart';
 
 const Cart = () => {
   const cart = useSelector(getCart);
+
   const dispatch = useDispatch();
   const username = useSelector((state) => state.user.userName);
   if (cart.length === 0) return <EmptyCart />;
@@ -41,9 +42,11 @@ const Cart = () => {
       <h2 className="mt-7 text-xl font-semibold">Your cart, {username}</h2>
       <ul className="mt-3 divide-y divide-stone-200 border-b">
         {cart.map((item) => (
-          <CartItem item={item} key={item.key} />
+          // <p key={item.id}>{item.id}</p>
+          <CartItem item={item} key={item.id} />
         ))}
       </ul>
+
       <div className="mt-6 space-x-2">
         <Button to="/order/new">Order Pizzas</Button>
         <Button type="secondary" onClick={() => dispatch(clearCart())}>
